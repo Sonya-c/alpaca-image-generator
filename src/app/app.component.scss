@@ -1,0 +1,13 @@
+#alpaca {
+    position: relative;
+    width: 300px;
+    height: 300px;
+
+    img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        max-width: 100%;
+        max-height: 100%;
+    }
+}
