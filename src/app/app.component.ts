@@ -11,6 +11,7 @@ import html2canvas from 'html2canvas';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
+  [x: string]: any;
   properties: { [key: string]: any } = {
     'hair': [
       { name: 'Default', value: 'default' },

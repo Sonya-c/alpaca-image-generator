@@ -14,28 +14,41 @@
       <img *ngIf="alpaca['accessory'] != 'default'"
         src='{{"../assets/alpaca/accessories/" + alpaca["accessory"]+".png"}}' alt="alpaca-accessories" />
     </div>
-    <div>
-      <button (click)="randomize()">Random</button>
-      <button (click)="save()">Download</button>
+    <div class="buttons-container">
+      <button (click)="randomize()">
+        <span>🔀</span>
+        <span>Random</span>
+      </button>
+      <button (click)="save()">
+        <span>🖼️</span>
+        <span>Download</span>
+      </button>
     </div>
   </div>
   <div>
     <div>
-      <p>{{ "Accessorize the Alpaca's" | uppercase }}</p>
-      <div *ngFor="let property of properties | keyvalue">
-        <input type="radio" id="{{property}}" name="styleType" value="{{property}}"
-          (change)="changeProperty(property.key)" [checked]="(property.key == currentProperty)" />
-        <label for="{{property}}" [ngStyle]="{'color': (property.key == currentProperty) ? 'red' : 'black'}">
-          {{property.key | titlecase }}
-        </label>
+      <h2>{{ "Accessorize the Alpaca's" | uppercase }}</h2>
+      <div class="radio-container">
+        <div class="radio" *ngFor="let property of properties | keyvalue">
+          <input type="radio" id="{{property.key}}" name="styleType" value="{{property}}"
+            (change)="changeProperty(property.key)" [checked]="(property.key == currentProperty)" />
+          <label for="{{property.key}}">
+            {{property.key | titlecase }}
+          </label>
+        </div>
       </div>
     </div>
     <div>
-      <p>{{ "Style" | uppercase }}</p>
-      <div *ngFor="let style of properties[currentProperty]">
-        <input type="radio" name="style" id="{{style.name}}" value="{{style.value}}"
-          [checked]="(style.value) == alpaca[currentProperty]" (change)="changeStyle(style.value)" />
-        <label for="{{style.name}}">{{ style.name }}</label>
+      <h2>{{ "Style" | uppercase }}</h2>
+      <div class="radio-container">
+        <div class="radio" class="{{currentProperty}}" *ngFor="let style of properties[currentProperty]">
+          <input type="radio" name="style" id="{{style.name}}" value="{{style.value}}"
+            [checked]="(style.value) == alpaca[currentProperty]" (change)="changeStyle(style.value)" />
+          <label
+            [style.background-image]="(currentProperty == 'background') ? 'url(../assets/alpaca/backgrounds/' + style.value + '.png)' : 'none'"
+            for="{{style.name}}">{{
+            style.name }}</label>
+        </div>
       </div>
     </div>
   </div>
